@@ -13,11 +13,11 @@ func gauges(myPlane : Aviatrix) {
     print(" ")
     print("| Running:  | ✅")
     print("| Location:  | \(myPlane.currentLocation)")
-//    print("| Distance:  | \(myPlane.distanceTraveled) miles")
-//    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
-//    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
-//    print("| MPG:       | \(myPlane.milesPerGallon)")
-//    print("| Fuel Bill: | \(myPlane.fuelCost)")
+    print("| Distance:  | \(myPlane.distanceTraveled) miles")
+    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
+    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
+    print("| MPG:       | \(myPlane.mpg)")
+    print("| Fuel Bill: | \(myPlane.fuelCost)")
 }
 
 func fly(myPlane : Aviatrix) {
@@ -52,11 +52,12 @@ func fly(myPlane : Aviatrix) {
 }
 
 func refuel(myPlane : Aviatrix) {
-    let refuelData = myPlane.refuel()
+    _ = myPlane.refuel()
+    let data = AviatrixData().fuelPrices
     
     print("Refueling...")
-    print("⛽ Here in _________, jet fuel costs _________")
-    print("⛽ You refueled _________ gallons totaling _________")
+    print("⛽ Here in \(myPlane.currentLocation), jet fuel costs $\(data[myPlane.currentLocation]!)")
+    print("⛽ You refueled \(myPlane.refuel()) gallons totaling $\(myPlane.fuelCost)")
 }
 
 func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {
@@ -86,10 +87,10 @@ var command = ""
 while command != "q" {
     print(" ")
     print("What would you like to do?")
-    print("a) 📊 check the plane gauges")
-    print("b) 🛫 fly to a different city")
-    print("c) ⛽ refuel")
-    print("q) ❌ quit")
+    print("a) 📊 Check the plane gauges 🤔")
+    print("b) 🛫 Fly to a different city 🥳")
+    print("c) ⛽ Refuel 😵")
+    print("q) ❌ Quit 😪")
     print(" ")
     print("Action: ")
     command = readLine()!
